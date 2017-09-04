@@ -7,7 +7,7 @@
  */
 
 session_start();
-if($_SESSION['admin']==null){
+if ($_SESSION['admin'] == null) {
     header("Location:../login.php");
     exit;
 
@@ -17,25 +17,25 @@ if($_SESSION['admin']==null){
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
+<head>
     <base href="<%=basePath%>">
 
-      <title>ETEN system</title>
+    <title>ETEN system</title>
 
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">
-	<meta http-equiv="keywords" content="ETEN">
-	<meta http-equiv="description" content="This is ETEN page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="ETEN">
+    <meta http-equiv="description" content="This is ETEN page">
+    <!--
+    <link rel="stylesheet" type="text/css" href="styles.css">
     -->
     <link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
     <script type="text/javascript" src="../js/libs/modernizr.min.js"></script>
-  </head>
+</head>
 
- <body>
+<body>
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">
@@ -51,7 +51,8 @@ if($_SESSION['admin']==null){
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
                 <li> Administrator</li>
-                <li><font color="red"><a href="sys/admin_findById.do" target="_blank"><?php  echo $_SESSION['admin']; ?></a></font></li>
+                <li><font color="red"><a href="sys/admin_findById.do"
+                                         target="_blank"><?php echo $_SESSION['admin']; ?></a></font></li>
                 <li><a href="<!--${pageContext.request.contextPath}/loginCheck/login_exit.do-->">exit</a></li>
             </ul>
         </div>
@@ -59,11 +60,11 @@ if($_SESSION['admin']==null){
 </div>
 <div class="container clearfix">
     <div class="sidebar-wrap">
-         <iframe name="left" src="manager.php" width="189px" frameborder="0" height="100%" scrolling="no"></iframe>
+        <iframe name="left" src="manager.php" width="189px" frameborder="0" height="100%" scrolling="no"></iframe>
     </div>
 
     <div class="main-wrap">
-       <iframe name="rigth" width="100%"  frameborder="0"  height="700px"></iframe>
+        <iframe name="rigth" width="100%" frameborder="0" height="700px"></iframe>
     </div>
     <!--/main-->
 </div>

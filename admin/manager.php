@@ -18,6 +18,11 @@ if ($_SESSION['admin'] == null) {
 }
 
 $column = $_GET['typeName'];
+if($column==null){
+
+    $column="Speaker";
+}
+
 ?>
 
 
@@ -33,9 +38,23 @@ $column = $_GET['typeName'];
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    <link rel="stylesheet" type="text/css" href="css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <script type="text/javascript" src="js/libs/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <script type="text/javascript" src="../js/libs/modernizr.min.js"></script>
+    <style type="text/css">
+        li{
+            list-style: none;
+        }
+
+        ul{
+            padding: 0;
+        }
+
+        a
+        {
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,13 +62,15 @@ $column = $_GET['typeName'];
 <div class="sidebar-content">
     <ul class="sidebar-list">
         <li>
-            &nbsp;&nbsp;gallery
+            &nbsp;&nbsp;<?php
+            echo $column;
+            ?>
             <ul class="sub-menu">
                 <!--   <li><a href="${pageContext.request.contextPath}/about/about_findByAboutId.do" target="rigth">about</a></li>
  -->
                 <?php
                 if ($column == 'Speaker') {
-                    echo "<li><a href='' target='rigth'>Add Article</a></li>";
+                    echo "<li><a href='addEssay.php?typeName=1' target='rigth'>Add Article</a></li>";
                     echo "<li><a href='' target='rigth'>Article Manager</a></li>";
                 }
 
@@ -64,13 +85,7 @@ $column = $_GET['typeName'];
                 }
                 if ($column == 'Amplifier') {
                     echo "<li><a href='' target='rigth'>US</a></li>";
-
-                }else{
-                    echo "<li><a href='' target='rigth'>Add Article</a></li>";
-                    echo "<li><a href='' target='rigth'>Article Manager</a></li>";
-
                 }
-
                 ?>
             </ul>
         </li>
