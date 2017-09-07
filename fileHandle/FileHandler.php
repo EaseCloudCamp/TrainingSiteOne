@@ -8,11 +8,14 @@
 
 $timestr = date("YmdHis") . floor(microtime() * 1000);
 $filename = $_FILES['file']['name'];
-
 $allowFile = array("jpg", "jpeg", "png");
 $temp = explode(".", $filename);
 $fileType = end($temp);
-$filepath = realpath(dirname(__FILE__).'/../')."/image/gallery/";
+
+$filepath = realpath(dirname(__FILE__).'/../')."/image/essay/";
+
+$nav=$_POST["navigationType"];
+
 
 if (($_FILES['file']['type'] == 'image/gif'
         || $_FILES['file']['type'] == 'image/png'
@@ -20,21 +23,20 @@ if (($_FILES['file']['type'] == 'image/gif'
         || $_FILES['file']['type'] == 'image/jpeg'
     ) && $_FILES['file']['size'] < 204800 && in_array($fileType, $allowFile)) {
     if ($_FILES['file']['error'] > 0) {
-
         echo "错误";
-
         return;
     }
 
     $filefullname = $filepath . $timestr . $filename;
     if (file_exists($filefullname)) {
 
-        echo "文件已经存在";
+        echo $timestr . $filename;
     } else {
         move_uploaded_file($_FILES['file']['tmp_name'], $filefullname);
-        echo $filefullname;
-        echo "文件上传成功";
+        echo $timestr . $filename;
     }
 } else {
     echo "非法的文件格式";
 }
+
+

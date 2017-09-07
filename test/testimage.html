@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+选择文件:<input id="file" type="file" onchange="show()">
+
+<img src="" id="img" width="300" height="300">
+<script>
+
+    function show() {
+       // alert($("#file").prop("value"));
+        $("#img").prop({"src":$("#file").prop("value")});
+
+    }
+</script>
+</body>
+</html>

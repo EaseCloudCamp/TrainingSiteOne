@@ -1,13 +1,10 @@
 <?php
-$typeName=$_GET['typeName'];
+$typeName = $_GET['typeName'];
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
-
     <title>Add article</title>
-
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -51,35 +48,6 @@ $typeName=$_GET['typeName'];
             str += myDate.getSeconds() + 1;    //获取当前秒数(0-59)
             $("#essayTime").val(str);
 
-
-          /*  $("#imageify").uploadify({     //不兼容edge
-                'fileObjName': 'image', //提交时候的字段名，和struts2里面用来接收File的字段名一致
-                method: 'get',            //以get方式上传
-                'buttonText': 'Additional images',        //上传按钮的文字
-                queueSizeLimit: 12,      //设置图片上传最大个数
-                'fileTypeDesc': 'Image Files',    //可上传文件格式的描述
-                'fileTypeExts': '*.gif; *.jpg; *.png',    //可上传的文件格式
-                'auto': true,    //选择一个文件是否自动上传
-                'multi': true,    //是否允许多选(这里多选是指在弹出对话框中是否允许一次选择多个，但是可以通过每次只上传一个的方法上传多个文件)
-                swf: 'uploadify/uploadify.swf',    //指定swf文件的，默认是uploadify.swf
-                uploader: '${pageContext.request.contextPath}/multiple/multipleFileUp_savePicture.do;jsessionid=<%=session.getId()%>',                //服务器响应地址
-                'formData': {'fileath': str, 'JSESSIONID': "${pageContext.session.id}"},        //这里是上传时候指定的参数,如果需要动态指定参数需要在onUploadStart方法里面指定
-                'onUploadStart': function (file) {    //上传前触发的事件
-
-                    //在这里添加  $('#imageify').uploadify('cancel'); 可以取消上传
-                    //$("#imageify").uploadify("settings","formData",{'name':'lmy1'}); //动态指定参数
-                },
-
-                'onUploadSuccess': function (file, data, response) {    //上传成功后触发的事件
-                    data2 = data + "_" + divId;
-                    $("#queue").append("<div id='" + divId + "' style='margin-top:15px;border:1px solid #7F7F7F;  width: 150px;" +
-                        "height: 150px;display: inline-block;margin-left: 15px'><img src='" + data + "' style='margin: 0px;padding: 0px;'" +
-                        "width=150px height=150px onmouseover='showDelete(" + divId + ")' onmouseout='hideDelete(" + divId + ")'/><a onclick='del(&quot ' + data2 + '&quot)' style='width: 150px;height: 30px;margin: 0px;" +
-                        "padding: 0px;cursor: pointer;text-align: center;line-height: 30px;background-color: #7F7F7F;color:red;opacity:0.4;position: absolute;margin-top: -30px;" +
-                        "display: none;' onmouseover='picture()' onmouseout='hideDelete(" + divId + ")' class='" + divId + "' >delete</a></div>");
-                    divId = divId + 1;
-                }
-            });*/
         });
 
         function checkForm() {
@@ -131,6 +99,46 @@ $typeName=$_GET['typeName'];
         .uploadify-queue {
             display: none;
         }
+
+        .imgpre {
+
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .imgpre: {
+
+        }
+
+        .imgContainer {
+            padding: 0;
+            position: relative;
+            margin-top: 10px;
+            width: 150px;
+            height: 150px;
+            margin-left: 10px;
+            background-color: #00bfa8;
+            float: left;
+        }
+
+        .imgDel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            font-size: 30px;
+            display: none;
+            cursor: pointer;
+
+        }
+
+        .imgContainer:hover .imgDel {
+            display: block;
+        }
+
+
     </style>
 </head>
 
@@ -144,27 +152,84 @@ $typeName=$_GET['typeName'];
     </div>
 </div>
 <div style="margin-left: 10px;">
-    <form action="sys/method_addEssay.do" method="post" onsubmit="return checkForm()" style="margin: 0px;padding: 0px"
+
+
+
+    <form action="saveEssay.php" id="form" method="post" onsubmit="return checkForm()" style="margin: 0px;padding: 0px"
           enctype="multipart/form-data">
-        <input type="hidden" name="navigationType" value="<?php echo $typeName;?>"><br/>
+        <input type="hidden" id="navigationType" name="navigationType" value="<?php echo $typeName; ?>"><br/>
         <input type="hidden" name="essayTime" id="essayTime"/><br/>
         Article name：<input class="common-text" name="essayName" id="essayName"/>
 
         <br/><br/>
 
 
-        <input type="file" style="margin-left: 80%" id="imageify" name="file">
+        <div id="queue" style="width: 98%;height:350px;border: 1px solid #646464;margin:1px;">
 
-
-        <div id="queue" style="width: 98%;height:350px;border: 1px solid #646464;margin:1px;"></div>
+        </div>
         <br/>
 
+        <input type="hidden" id="num" name="num">
         <input type="submit" id="submitID" value="submit" style='cursor: pointer;' class="btn btn-primary btn2"/>
 
     </form>
-</div>
-<span style="color: red;margin-left: 10px;" id="message"> ${message}</span>
 
+    <input type="file" style="margin-left: 80%" id="imageify" name="file"
+           onchange="addFile()"/>
+</div>
+
+<script>
+    var num=0;
+    var names=new Array();
+
+    function addFile() {
+
+        var formData = new FormData();
+        formData.append("file", $("#imageify")[0].files[0]);
+        formData.append("navigationType",$("#navigationType").prop("value"));
+        $.ajax({
+            url: "../fileHandle/FileHandler.php",
+            data: formData,
+            type: "POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+                var del = "delImg('" + data + "')";
+                var str = "<img class='imgpre' src=../image/essay/" + data + ">";
+                var show = "<div class='imgContainer' id=" + data + ">" +
+                    " <span class='imgDel' onclick=" + del + ">x</span>" + str + " </div>";
+                $("#queue").append(show);
+                 saveImgName(data);
+                var name="img"+(num++);
+
+                var input="<input type='hidden'id='"+name+"' name='"+name+"' value='"+data+"' class='"+data+"'>"
+                $("#form").append(input);
+                 $("#num").val(num);
+                console.log($("#num").prop("value"));
+                console.log($("#navigationType").prop("value"));
+
+            }, error: function (data) {
+
+            }
+        });
+    }
+
+    function delImg(id) {
+        var target = document.getElementById(id);
+        target.parentNode.removeChild(target);
+        names.splice(id,1);
+        var input=document.getElementsByClassName(id)[0];
+        input.parentNode.removeChild(input);
+        num--;
+        $("#num").val(num);
+        console.log($("#num").prop("value"));
+    }
+    function saveImgName(name) {
+        names.push(name);
+    }
+</script>
 </body>
 
 </html>

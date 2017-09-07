@@ -70,9 +70,6 @@ $essayImpl=new EssayDaoImpl();
         </div>
         <div class="nav">
             <ul id="nav">
-
-                
-                
                 <li class="mainlevel">
                     <a>Speaker</a>
                     <ul>
@@ -86,11 +83,25 @@ $essayImpl=new EssayDaoImpl();
                 </li>
                 <li class="mainlevel">
                     <a>Amplifier</a>]
+                    <ul>
+
+
+
+
+                    </ul>
                 </li>
-                <li><a href="gallery.php">Gallery</a></li>
+                <li><a href="gallery.php">Gallery</a>
+
+                <ul>
+
+
+
+
+
+                </ul>
+                </li>
                 <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
             </ul>
-
         </div>
     </div>
 </div>
