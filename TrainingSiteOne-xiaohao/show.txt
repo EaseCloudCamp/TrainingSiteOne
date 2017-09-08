@@ -1,4 +1,0 @@
-) Notice: Undefined index: typeName in E:\PHP\eternal\eternal\admin\manager.php on line 14
-Call Stack
-#	Time	Memory	Function	Location
-1	0.0004	134336	{main}( )	...\manager.php:0
