@@ -13,12 +13,6 @@ if(($essayRows=$essayImpl->findEssay())==null){
     echo "<script>alert('获取数据失败')</script>";
 }
 
-
-
-
-
-
-
 function customError($errno, $errstr)  //错误处理器
 {
     //啥都不处理
@@ -146,7 +140,11 @@ $pages = ceil(GalleryImpl::$nums / 10);
 
                     </ul>
                 </li>
-                <li><a href="gallery.php">Gallery</a></li>
+                <li><a href="gallery.php">Gallery</a>
+                    <ul>
+
+                    </ul>
+                </li>
                 <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
             </ul>
 

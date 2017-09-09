@@ -1,16 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: xiaohao-pc
- * Date: 17-8-28
- * Time: 下午2:25
- */
-include("mvc/dao/EssayDaoImpl.php");
-$essayImpl=new EssayDaoImpl();
- if(($rows=$essayImpl->findEssay())==null){
-      echo "<script>alert('获取数据失败')</script>";
- }
-?>
+///**
+// * Created by PhpStorm.
+// * User: xiaohao-pc
+// * Date: 17-8-28
+// * Time: 下午2:25
+// */
+//include("mvc/dao/EssayDaoImpl.php");
+//$essayImpl=new EssayDaoImpl();
+// if(($rows=$essayImpl->findEssay())==null){
+//      echo "<script>alert('获取数据失败')</script>";
+// }
+//?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- saved from url=(0023)http://eternalsound.dk/ -->
 <html>
@@ -70,27 +70,76 @@ $essayImpl=new EssayDaoImpl();
         </div>
         <div class="nav">
             <ul id="nav">
-
-                
-                
                 <li class="mainlevel">
                     <a>Speaker</a>
                     <ul>
                         <?php
-                        foreach ($rows as $row) {
-                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
+//                        foreach ($rows as $row) {
+//                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
+//                        }
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "root";
+                        $dbname = "eten";
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        if ($conn->connect_error) {
+                            die("连接失败: " . $conn->connect_error);
                         }
+
+                        $sql = "SELECT * FROM essay WHERE navigation_type='1'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+
+                            while($row = $result->fetch_assoc()) {
+                                echo "<li>".$row["essay_name"]."</li>";
+                            }
+                        } else {
+                            echo "0 个结果";
+                        }
+                        $conn->close();
                         ?>
-                        <li><a href="gellery1/Gellery%20-%20Eternal%20sound.html">Speaker</a></li>
                     </ul>
                 </li>
                 <li class="mainlevel">
-                    <a>Amplifier</a>]
+                    <a>Amplifier</a>
+                    <ul>
+                        <?php
+//                        foreach ($rows as $row) {
+//                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
+//                        }
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "root";
+                        $dbname = "eten";
+
+                        // 创建连接
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // 检测连接
+                        if ($conn->connect_error) {
+                            die("连接失败: " . $conn->connect_error);
+                        }
+
+                        $sql = "SELECT * FROM essay WHERE navigation_type='2'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+
+                            while($row = $result->fetch_assoc()) {
+                                echo $row["essay_name"];
+                            }
+                        } else {
+                            echo "0 个结果";
+                        }
+                        $conn->close();
+                        ?>
+                    </ul>
                 </li>
-                <li><a href="gallery.php">Gallery</a></li>
+                <li><a href="gallery.php">Gallery</a>
+                </li>
                 <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
             </ul>
-
         </div>
     </div>
 </div>
@@ -116,4 +165,3 @@ $essayImpl=new EssayDaoImpl();
 </div>
 </body>
 </html>
-
