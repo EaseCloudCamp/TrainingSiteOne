@@ -1,18 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: xiaohao-pc
- * Date: 17-8-30
- * Time: 上午9:27
- */
-
+///**
+// * Created by PhpStorm.
+// * User: xiaohao-pc
+// * Date: 17-8-30
+// * Time: 上午9:27
+// */
+//
 include("mvc/dao/GalleryImpl.php");
-include("mvc/dao/EssayDaoImpl.php");
-$essayImpl=new EssayDaoImpl();
-if(($essayRows=$essayImpl->findEssay())==null){
-    echo "<script>alert('获取数据失败')</script>";
-}
-
+//include("mvc/dao/EssayDaoImpl.php");
+//$essayImpl=new EssayDaoImpl();
+//if(($essayRows=$essayImpl->findEssay())==null){
+//    echo "<script>alert('获取数据失败')</script>";
+//}
+//
 function customError($errno, $errstr)  //错误处理器
 {
     //啥都不处理
@@ -125,10 +125,34 @@ $pages = ceil(GalleryImpl::$nums / 10);
                 <li class="mainlevel">
                     <a>Speaker</a>
                     <ul>
+<!--                        --><?php
+//                        foreach ($essayRows as $row) {
+//                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
+//                        }
+//                        ?>
                         <?php
-                        foreach ($essayRows as $row) {
-                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "root";
+                        $dbname = "eten";
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        if ($conn->connect_error) {
+                            die("连接失败: " . $conn->connect_error);
                         }
+
+                        $sql = "SELECT * FROM essay WHERE navigation_type='1'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+
+                            while($row = $result->fetch_assoc()) {
+                                echo "<li style='font-size: 20px'>".$row["essay_name"]."</li>";
+                            }
+                        } else {
+                            echo "0 个结果";
+                        }
+                        $conn->close();
                         ?>
                         <li><a href="gellery1/Gellery%20-%20Eternal%20sound.html">Speaker</a></li>
                     </ul>
@@ -136,14 +160,35 @@ $pages = ceil(GalleryImpl::$nums / 10);
                 <li class="mainlevel">
                     <a>Amplifier</a>
                     <ul>
+                        <?php
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "root";
+                        $dbname = "eten";
 
+                        // 创建连接
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // 检测连接
+                        if ($conn->connect_error) {
+                            die("连接失败: " . $conn->connect_error);
+                        }
 
+                        $sql = "SELECT * FROM essay WHERE navigation_type='2'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+
+                            while($row = $result->fetch_assoc()) {
+                                echo "<li style='font-size: 20px'>".$row["essay_name"]."</li>";
+                            }
+                        } else {
+                            echo "0 个结果";
+                        }
+                        $conn->close();
+                        ?>
                     </ul>
                 </li>
                 <li><a href="gallery.php">Gallery</a>
-                    <ul>
-
-                    </ul>
                 </li>
                 <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
             </ul>
@@ -156,19 +201,14 @@ $pages = ceil(GalleryImpl::$nums / 10);
 <section id="examples" class="section examples-section">
     <div class="image-row">
         <div class="image-set" style="min-height: 450px;">
-
-
             <?php
-
             foreach ($rows as $row) {
                 echo "<a class='example-image-link' href=" . '"' . $row[2] . '"' . "data-lightbox='example-set' title=''>
                 <img class='example-image' src=" . '"' . $row[2] . '"' . " width='180' height='150'
                      style='float: left;'>
-            </a>";
+                      </a>";
             }
             ?>
-
-
             <div class="page" style="margin-top: 20px;clear: left;">
                 <ul>
                     <?php
@@ -188,8 +228,8 @@ $pages = ceil(GalleryImpl::$nums / 10);
 </section>
 <div class="footer">
     <div
-        style="width: 1000px;margin: 0 auto;line - height: 100px;text - align: center;font - family: inherit;font - size: 20px;">
-        Copyright © 2015 Eternal sound. All rights reserved.<img src="image/gallery/fb.png"><img src="image/gallery/t.png">
+        style="width: 1000px;margin: 0 auto;line-height: 100px;text-align: center;font-family: inherit;font-size: 20px;">
+        Copyright © 2015 Eternal sound. All rights reserved.<img src="images/fb.png"><img src="images/t.png">
     </div>
 </div>
 

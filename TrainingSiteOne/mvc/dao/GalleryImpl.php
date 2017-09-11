@@ -31,7 +31,7 @@ class GalleryImpl implements GalleryDao
             echo "<script>alert('数据库链接失败')</script>";
         }
         $sCount = "select count(gallery_id) from gallery";
-        $sql = "select * from gallery LIMIT " . $start . ",10";//查找数据库
+        $sql = "select * from gallery ORDER BY gallery_id DESC LIMIT " . $start . ",10";//查找数据库
 
         $rsCount = $conn->query($sCount);
         if ($rsCount->num_rows > 0) {

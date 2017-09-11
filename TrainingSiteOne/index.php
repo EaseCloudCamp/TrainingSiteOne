@@ -74,9 +74,6 @@
                     <a>Speaker</a>
                     <ul>
                         <?php
-//                        foreach ($rows as $row) {
-//                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
-//                        }
                         $servername = "localhost";
                         $username = "root";
                         $password = "root";
@@ -93,7 +90,7 @@
                         if ($result->num_rows > 0) {
 
                             while($row = $result->fetch_assoc()) {
-                                echo "<li>".$row["essay_name"]."</li>";
+                                echo "<li style='font-size: 20px'>".$row["essay_name"]."</li>";
                             }
                         } else {
                             echo "0 个结果";
@@ -106,9 +103,6 @@
                     <a>Amplifier</a>
                     <ul>
                         <?php
-//                        foreach ($rows as $row) {
-//                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
-//                        }
                         $servername = "localhost";
                         $username = "root";
                         $password = "root";
@@ -127,7 +121,7 @@
                         if ($result->num_rows > 0) {
 
                             while($row = $result->fetch_assoc()) {
-                                echo $row["essay_name"];
+                                echo "<li style='font-size: 20px'>".$row["essay_name"]."</li>";
                             }
                         } else {
                             echo "0 个结果";
@@ -143,9 +137,9 @@
         </div>
     </div>
 </div>
-<div class="index-img" style="background:url('images/bg.jpg') no-repeat top center">
+<div class="index-img" style="background:url('assets/img/speaker.jpg') no-repeat top center">
 </div>
-<div class="index-img" style="background:url('images/bg2.jpg') no-repeat top center;height: 898px;">
+<div class="index-img" style="background:url('assets/img/amplifier.jpg') no-repeat top center;height: 898px;">
 </div>
 <div style="text-align: center;margin-top: 70px;margin-bottom: 60px;"><img src="images/d.png"></div>
 <div class="spic">
@@ -161,7 +155,7 @@
 
 <div class="footer">
     <div style="width: 1000px;margin: 0 auto;line-height: 100px;text-align: center;font-family: inherit;font-size: 20px;">
-        Copyright © 2015 Eternal sound. All rights reserved.<img src=image/gallery/fb.png"><img src="image/gallery/t.png"></div>
+        Copyright © 2015 Eternal sound. All rights reserved.<img src="images/fb.png"><img src="images/t.png" /></div>
 </div>
 </body>
 </html>
