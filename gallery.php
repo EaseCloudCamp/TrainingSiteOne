@@ -132,24 +132,39 @@ $pages = ceil(GalleryImpl::$nums / 10);
                     <a>Speaker</a>
                     <ul>
                         <?php
-                        foreach ($essayRows as $row) {
-                            echo "<li><a href='#'>" . $row[2] . "</a></li>";
+
+                        if(($rows=$essayImpl->findEssayByNavigationType('1'))==null){
+                            //没有数据
+                        }
+
+
+                        foreach ($rows as $row) {
+                            echo "<li><a href='viewModel.php?navigationName=".$row[2]."'>" . $row[2] . "</a></li>";
                         }
                         ?>
-                        <li><a href="gellery1/Gellery%20-%20Eternal%20sound.html">Speaker</a></li>
-                    </ul>
+                        <!--       <li><a href="gellery1/Gellery%20-%20Eternal%20sound.html">Speaker</a></li>
+                          --> </ul>
                 </li>
                 <li class="mainlevel">
                     <a>Amplifier</a>
                     <ul>
+                        <?php
+                        if(($rows=$essayImpl->findEssayByNavigationType('2'))==null){
+                            /*  echo "<script>alert('获取数据失败')</script>";*/
+                        }
 
-
+                        foreach ($rows as $row) {
+                            echo "<li><a href='viewModel.php?navigationName=".$row[2]."'>" . $row[2] . "</a></li>";
+                        }
+                        ?>
                     </ul>
                 </li>
-                <li><a href="gallery.php">Gallery</a></li>
+                <li><a href="gallery.php">Gallery</a>
+                    <ul>
+                    </ul>
+                </li>
                 <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
             </ul>
-
         </div>
     </div>
 </div>

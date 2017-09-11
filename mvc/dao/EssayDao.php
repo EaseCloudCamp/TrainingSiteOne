@@ -9,4 +9,10 @@ interface  EssayDao{
        public function findEssay();
        public function  addEssay(Essay $essay);
        public function  delEssay(Essay $essay);
+       public function delEssayAll($essayIds,$navigationType);
+       public function findEssayByNavigationType($navigationType);
+       public function fingEssayImgsByNavigationName($navigationName);
+       public function findEssayImgsByEssayId($essayId);
+       public function modifyEssayName($essayId,$newName);
+       public function deleteEssayImg($imgId);
 }

@@ -6,8 +6,10 @@
  * Time: 下午2:25
  */
 include("mvc/dao/EssayDaoImpl.php");
+$navigationName=$_GET['navigationName'];
 $essayImpl=new EssayDaoImpl();
-
+$essay=new EssayDaoImpl();
+$imgRows=$essay->fingEssayImgsByNavigationName($navigationName);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- saved from url=(0023)http://eternalsound.dk/ -->
@@ -64,7 +66,7 @@ $essayImpl=new EssayDaoImpl();
 <div class="header">
     <div class="w1000">
         <div class="logo">
-            <a href="index.php"><img src="images/logo.png"></a>
+            <a href="http://eternalsound.dk/"><img src="images/logo.png"></a>
         </div>
         <div class="nav">
             <ul id="nav">
@@ -74,7 +76,7 @@ $essayImpl=new EssayDaoImpl();
                         <?php
 
                         if(($rows=$essayImpl->findEssayByNavigationType('1'))==null){
-                          //没有数据
+                           //not data;
                         }
 
 
@@ -82,15 +84,15 @@ $essayImpl=new EssayDaoImpl();
                             echo "<li><a href='viewModel.php?navigationName=".$row[2]."'>" . $row[2] . "</a></li>";
                         }
                         ?>
-                 <!--       <li><a href="gellery1/Gellery%20-%20Eternal%20sound.html">Speaker</a></li>
-                   --> </ul>
+                        <!--       <li><a href="gellery1/Gellery%20-%20Eternal%20sound.html">Speaker</a></li>
+                          --> </ul>
                 </li>
                 <li class="mainlevel">
                     <a>Amplifier</a>
                     <ul>
                         <?php
                         if(($rows=$essayImpl->findEssayByNavigationType('2'))==null){
-                          /*  echo "<script>alert('获取数据失败')</script>";*/
+                                      //not data
                         }
 
                         foreach ($rows as $row) {
@@ -100,29 +102,21 @@ $essayImpl=new EssayDaoImpl();
                     </ul>
                 </li>
                 <li><a href="gallery.php">Gallery</a>
-                <ul>
-                </ul>
+                    <ul>
+                    </ul>
                 </li>
                 <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
             </ul>
         </div>
     </div>
 </div>
-<div class="index-img" style="background:url('images/bg.jpg') no-repeat top center;height: 100%">
-</div>
-<div class="index-img" style="background:url('images/bg2.jpg') no-repeat top center;height: 100%;">
-</div>
-<div style="text-align: center;margin-top: 70px;margin-bottom: 60px;"><img src="images/d.png"></div>
-<div class="spic">
-    <ul>
-        <li><img src="images/09.jpg"></li>
-        <li><img src="images/11.jpg"></li>
-        <li><img src="images/13.jpg"></li>
-        <li><img src="images/23.jpg"></li>
-        <li><img src="images/25.jpg"></li>
-        <li><img src="images/27.jpg"></li>
-    </ul>
-</div>
+
+<?php
+foreach ($imgRows as $imgRow) {
+    echo "<div class=\"index-img\" style=\"background:url('".$imgRow[0]."') no-repeat top center;height: 100%\">
+</div>";
+}
+?>
 
 <div class="footer">
     <div style="width: 1000px;margin: 0 auto;line-height: 100px;text-align: center;font-family: inherit;font-size: 20px;">

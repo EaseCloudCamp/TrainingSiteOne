@@ -70,8 +70,8 @@ if($column==null){
  -->
                 <?php
                 if ($column == 'Speaker') {
-                    echo "<li><a href='addEssay.php?typeName=1' target='rigth'>Add Article</a></li>";
-                    echo "<li><a href='' target='rigth'>Article Manager</a></li>";
+                    echo "<li><a href='addEssay.php?typeName=1&essayTypeName=Speaker' target='rigth'>Add Article</a></li>";
+                    echo "<li><a href='list.php?navigationType=1&navigationName=Speaker' target='rigth'>Article Manager</a></li>";
                 }
 
                 if ($column == 'US') {
@@ -79,12 +79,13 @@ if($column==null){
                 }
                 if ($column == 'Gallery') {
 
-                    echo "<li><a href='' target='rigth'>Add Article</a></li>";
-                    echo "<li><a href='' target='rigth'>Article Manager</a></li>";
+                    echo "<li><a href='' target='rigth'>gallery</a></li>";
+
 
                 }
                 if ($column == 'Amplifier') {
-                    echo "<li><a href='' target='rigth'>US</a></li>";
+                    echo "<li><a href='addEssay.php?typeName=2&essayTypeName=Amplifier' target='rigth'>Add Article</a></li>";
+                    echo "<li><a href='list.php?navigationType=2&navigationName=Amplifier' target='rigth'>Article Manager</a></li>";
                 }
                 ?>
             </ul>

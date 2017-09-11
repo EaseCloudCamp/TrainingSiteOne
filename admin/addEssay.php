@@ -146,7 +146,9 @@ $typeName = $_GET['typeName'];
 <div class="crumb-wrap">
     <div class="crumb-list">
 
-        <!-- ${param.typeName}-->
+       <?php
+       echo $_GET['essayTypeName'];
+       ?>
         <span class="crumb-step">></span>
         <span class="crumb-name">Add article</span>
     </div>
