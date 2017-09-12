@@ -30,6 +30,7 @@ $pages = ceil(GalleryImpl::$nums / 10);
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- saved from url=(0038)http://eternalsound.dk/webgallery.html -->
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -118,7 +119,7 @@ $pages = ceil(GalleryImpl::$nums / 10);
 <div class="header">
     <div class="w1000">
         <div class="logo">
-            <a href="http://eternalsound.dk/"><img src="image/gallery/logo.png"></a>
+            <a href="index.php"><img src="image/gallery/logo.png"></a>
         </div>
         <div class="nav">
             <ul id="nav">
@@ -190,7 +191,7 @@ $pages = ceil(GalleryImpl::$nums / 10);
                 </li>
                 <li><a href="gallery.php">Gallery</a>
                 </li>
-                <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
+                <li><a href="US.php" target="_blank">US</a></li>
             </ul>
 
         </div>
