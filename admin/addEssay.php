@@ -185,7 +185,6 @@ $typeName = $_GET['typeName'];
     var names=new Array();
 
     function addFile() {
-
         var formData = new FormData();
         formData.append("file", $("#imageify")[0].files[0]);
         formData.append("navigationType",$("#navigationType").prop("value"));

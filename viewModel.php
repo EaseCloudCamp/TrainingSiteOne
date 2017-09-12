@@ -66,7 +66,7 @@ $imgRows=$essay->fingEssayImgsByNavigationName($navigationName);
 <div class="header">
     <div class="w1000">
         <div class="logo">
-            <a href="http://eternalsound.dk/"><img src="images/logo.png"></a>
+            <a href="index.php"><img src="images/logo.png"></a>
         </div>
         <div class="nav">
             <ul id="nav">

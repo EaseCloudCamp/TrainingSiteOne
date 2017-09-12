@@ -5,7 +5,8 @@
  * Date: 17-8-31
  * Time: 下午4:31
  */
-echo __FILE__;
+session_start();
+$_SESSION['admin']=null;
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

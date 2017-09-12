@@ -54,10 +54,92 @@ class GalleryImpl implements GalleryDao
     function delImages()
     {
         // TODO: Implement delImages() method.
+        $username = "root";
+        $password = "root";
+        $url = "localhost:3306";
+        $conn = new mysqli($url, $username, $password, "eten");
+        if ($conn->connect_error) {
+            echo "<script>alert('数据库链接失败')</script>";
+        }
+
+        $conn = new mysqli($url, $username, $password, "eten");
+        $saveSQL = "delete from gallery";
+
+        echo $saveSQL;
+        if ($conn->query($saveSQL)) {
+            $conn->close();
+            return true;
+        }
+        $conn->close();
+        return false;
+
+
+
     }
 
-    function addImages()
+    function addImages($imgName)
     {
         // TODO: Implement addImages() method.
+        $username = "root";
+        $password = "root";
+        $url = "localhost:3306";
+        $conn = new mysqli($url, $username, $password, "eten");
+        if ($conn->connect_error) {
+            echo "<script>alert('数据库链接失败')</script>";
+        }
+        $imgPath = "image/gallery/" . $imgName;
+        $conn = new mysqli($url, $username, $password, "eten");
+        $saveSQL = "insert into gallery(gallery_name, gallery_uri) VALUES ('" . $imgName . "','" . $imgPath . "')";
+        if ($conn->query($saveSQL)) {
+            echo "<br>保存成功";
+        }
+        $conn->close();
+ }
+
+    function addImageDesc($galleryId, $desc)
+    {
+        // TODO: Implement addImageDesc() method.
+        $username = "root";
+        $password = "root";
+        $url = "localhost:3306";
+        $conn = new mysqli($url, $username, $password, "eten");
+        if ($conn->connect_error) {
+            echo "<script>alert('数据库链接失败')</script>";
+        }
+
+        $conn = new mysqli($url, $username, $password, "eten");
+        $saveSQL = "update gallery set gallert_desc='".$desc."' where gallery_id='".$galleryId."'";
+
+       echo $saveSQL;
+        if ($conn->query($saveSQL)) {
+            echo "<br>保存成功";
+        }
+        $conn->close();
+
+
+    }
+
+    function delOneImg($galleryId)
+    {
+        // TODO: Implement delOneImg() method.
+        $username = "root";
+        $password = "root";
+        $url = "localhost:3306";
+        $conn = new mysqli($url, $username, $password, "eten");
+        if ($conn->connect_error) {
+            echo "<script>alert('数据库链接失败')</script>";
+        }
+
+        $conn = new mysqli($url, $username, $password, "eten");
+        $saveSQL = "delete from gallery WHERE gallery_id=".$galleryId;
+
+        echo $saveSQL;
+        if ($conn->query($saveSQL)) {
+            $conn->close();
+            return true;
+        }
+        $conn->close();
+        return false;
+
     }
 }

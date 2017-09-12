@@ -10,5 +10,7 @@ interface GalleryDao{
 
    function findImages($page);
    function delImages();
-   function addImages();
+   function addImages($imgName);
+   function addImageDesc($imgId,$desc);
+   function delOneImg($galleryId);
 }

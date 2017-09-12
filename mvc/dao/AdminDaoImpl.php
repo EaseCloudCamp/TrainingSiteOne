@@ -21,13 +21,12 @@ require_once ("AdminDao.php");
            return;
        }
       $sql="select * from admin where admin_name='".$username."' and admin_password='".$password."'";
-       echo $sql;
+
        $rs=  $conn->query($sql);
        if($rs->num_rows>0){
           $_SESSION['admin']=$rs->fetch_row()[1];
            return true;
        }else{
-           echo "<br>meichadao";
            return false;
        }
    }

@@ -51,9 +51,9 @@ if ($_SESSION['admin'] == null) {
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
                 <li> Administrator</li>
-                <li><font color="red"><a href="sys/admin_findById.do"
+                <li><font color="red"><a href="../login.php"
                                          target="_blank"><?php echo $_SESSION['admin']; ?></a></font></li>
-                <li><a href="<!--${pageContext.request.contextPath}/loginCheck/login_exit.do-->">exit</a></li>
+                <li><a href="../login.php">exit</a></li>
             </ul>
         </div>
     </div>

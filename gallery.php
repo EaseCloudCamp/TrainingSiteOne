@@ -12,13 +12,6 @@ $essayImpl=new EssayDaoImpl();
 if(($essayRows=$essayImpl->findEssay())==null){
     echo "<script>alert('获取数据失败')</script>";
 }
-
-
-
-
-
-
-
 function customError($errno, $errstr)  //错误处理器
 {
     //啥都不处理
@@ -30,7 +23,7 @@ if ($currentPage == null) {
     $currentPage = 1;
 }
 $gallery = new GalleryImpl();
-$rows = $gallery->findImages($currentPage);
+$imgRows = $gallery->findImages($currentPage);
 $pages = ceil(GalleryImpl::$nums / 10);
 ?>
 
@@ -124,7 +117,7 @@ $pages = ceil(GalleryImpl::$nums / 10);
 <div class="header">
     <div class="w1000">
         <div class="logo">
-            <a href="http://eternalsound.dk/"><img src="image/gallery/logo.png"></a>
+            <a href="index.php"><img src="image/gallery/logo.png"></a>
         </div>
         <div class="nav">
             <ul id="nav">
@@ -177,7 +170,7 @@ $pages = ceil(GalleryImpl::$nums / 10);
 
             <?php
 
-            foreach ($rows as $row) {
+            foreach ($imgRows as $row) {
                 echo "<a class='example-image-link' href=" . '"' . $row[2] . '"' . "data-lightbox='example-set' title=''>
                 <img class='example-image' src=" . '"' . $row[2] . '"' . " width='180' height='150'
                      style='float: left;'>

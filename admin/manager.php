@@ -9,8 +9,9 @@ session_start();
 function customError($errno, $errstr)  //错误处理器
 {
     //啥都不处理
-    $column="gallery";
+    $column = "gallery";
 }
+
 set_error_handler("customError");
 if ($_SESSION['admin'] == null) {
     header("Location:../login.php");
@@ -18,9 +19,8 @@ if ($_SESSION['admin'] == null) {
 }
 
 $column = $_GET['typeName'];
-if($column==null){
-
-    $column="Speaker";
+if ($column == null) {
+    $column = "Speaker";
 }
 
 ?>
@@ -42,16 +42,15 @@ if($column==null){
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
     <script type="text/javascript" src="../js/libs/modernizr.min.js"></script>
     <style type="text/css">
-        li{
+        li {
             list-style: none;
         }
 
-        ul{
+        ul {
             padding: 0;
         }
 
-        a
-        {
+        a {
             text-decoration: none;
         }
     </style>
@@ -62,9 +61,10 @@ if($column==null){
 <div class="sidebar-content">
     <ul class="sidebar-list">
         <li>
-            &nbsp;&nbsp;<?php
-            echo $column;
-            ?>
+            <p style="text-align: center"> &nbsp;&nbsp;<?php
+                echo $column;
+                ?></p>
+
             <ul class="sub-menu">
                 <!--   <li><a href="${pageContext.request.contextPath}/about/about_findByAboutId.do" target="rigth">about</a></li>
  -->
@@ -75,13 +75,10 @@ if($column==null){
                 }
 
                 if ($column == 'US') {
-                    echo "<li><a href='' target='rigth'>US</a></li>";
+                    echo "<li><a href='' target='rigth' style='text-align: center'>US</a></li>";
                 }
                 if ($column == 'Gallery') {
-
-                    echo "<li><a href='' target='rigth'>gallery</a></li>";
-
-
+                    echo "<li><a href='gallery.php?currentPage=1' target='rigth'>gallery</a></li>";
                 }
                 if ($column == 'Amplifier') {
                     echo "<li><a href='addEssay.php?typeName=2&essayTypeName=Amplifier' target='rigth'>Add Article</a></li>";
