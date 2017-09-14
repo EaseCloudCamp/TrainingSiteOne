@@ -107,7 +107,7 @@ class GalleryImpl implements GalleryDao
             echo "<script>alert('数据库链接失败')</script>";
         }
 
-        $conn = new mysqli($url, $username, $password, "eten");
+
         $saveSQL = "update gallery set gallert_desc='".$desc."' where gallery_id='".$galleryId."'";
 
        echo $saveSQL;

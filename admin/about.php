@@ -1,7 +1,24 @@
+
 <?php
+$username = "root";
+$password = "root";
+$url = "localhost:3306";
+$conn = new mysqli($url, $username, $password, "eten");
+if ($conn->connect_error) {
+    echo "<script>alert('数据库链接失败')</script>";
+}
+$sql ="select *from about";
+$rs=$conn->query($sql);
+$rows=null;
+if($rs->num_rows>0){
+    $rows=$rs->fetch_all();
+}
+$desc=$rows[0][1];
+
+
+$conn->close();
 
 ?>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -14,35 +31,36 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="ETEN">
 	<meta http-equiv="description" content="This is about page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+
+
+      <script type="text/javascript">
+          window.UEDITOR_HOME_URL='../ueditor/';
+      </script>
 <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="../ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="../ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" src="../ueditor/lang/en/en.js"></script></head>
+<script type="text/javascript" src="../ueditor/lang/zh-cn/zh-cn.js"></script></head>
 	<link rel="stylesheet" type="text/css" href="../css/common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
   <body>
     <script id="editor" type="text/plain" style="width:100%;height:70%;"></script>
-    <form action="" onsubmit="init()" method="post">
-         <input type="hidden" name="about.aboutId" value="about id"/>
-         <input type="hidden" name="about.aboutDesc" id="aboutDesc"/>
-         <input   id='save' type="button"  value="save" style='cursor: pointer;' class="btn btn-primary btn2">
+    <form action="saveAbout.php" onsubmit="init()" method="post">
+         <input type="hidden" name="aboutId" value="<?php if($rows!=null){echo $rows[0][0];}?>"/>
+         <input type="hidden" name="aboutDesc" id="aboutDesc"/>
+         <input type="submit"  value="save" style='cursor: pointer;' class="btn btn-primary btn2">
     </form>
     
     <script type="text/javascript">
-   
         var ue = UE.getEditor('editor');
-        ue.ready(function(){
-        	ue.setContent('${about.aboutDesc}');  //这里是来自服务器的内容
-        });
+    ue.ready(function () {
+            ue.setContent('<?=$desc?>');
+    })
         function init()
         {
         	var content = UE.getEditor('editor').getContent();
-        	//alert(content);
         	$("#aboutDesc").val(content);
         }
+
         $(function (){
         	var message = "";
             message = '${message}';
@@ -55,27 +73,13 @@
             	alert("save failure");
             }
         })
-      
-        
-$(function (){
-    	   $("#save").click(function (){
-    		   var content = UE.getEditor('editor').getContent();
-    		   alert(content);
-    		/*   $.ajax({
-    			   type: "POST",
-    			   dataType: "text",
-    			   url: "${pageContext.request.contextPath}/about/about_saveAbout.do",
-    			   data: "about.aboutId=${about.aboutId}&about.aboutDesc="+content,
-    			   success: function(data){
-    				     if(data=="success")
-    				     {
-    				        alert("保存成功!");	 
-    				     }
-    			   }
-    			});*/
-    	   })
-    	   
-       });
+
+
+
+
+
+
+
     </script>
   </body>
 </html>

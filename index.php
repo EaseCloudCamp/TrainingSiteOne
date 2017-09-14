@@ -103,7 +103,7 @@ $essayImpl=new EssayDaoImpl();
                 <ul>
                 </ul>
                 </li>
-                <li><a href="http://eternalsound.dk/about.html" target="_blank">US</a></li>
+                <li><a href="about.php">US</a></li>
             </ul>
         </div>
     </div>
