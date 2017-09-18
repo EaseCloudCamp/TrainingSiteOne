@@ -1,13 +1,8 @@
 <?php
 include("mvc/dao/EssayDaoImpl.php");
+
 $essayImpl = new EssayDaoImpl();
-$username = "root";
-$password = "root";
-$url = "localhost:3306";
-$conn = new mysqli($url, $username, $password, "eten");
-if ($conn->connect_error) {
-    echo "<script>alert('数据库链接失败')</script>";
-}
+$conn = $essayImpl->getConn();
 $sql = "select *from about";
 $rs = $conn->query($sql);
 $about = null;
@@ -15,11 +10,6 @@ if ($rs->num_rows > 0) {
     $about = $rs->fetch_all();
 }
 $desc = $about[0][1];
-
-
-$conn->close();
-
-
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -119,14 +109,16 @@ $conn->close();
             </ul>
         </div>
     </div>
-    <div class="content" style="text-align: center;margin-top: 100px;">
-        <?= $desc ?>
-    </div>
 
-    <div class="footer">
-        <div style="width: 1000px;margin: 0 auto;line-height: 100px;text-align: center;font-family: inherit;font-size: 20px;">
-            Copyright © 2015 Eternal sound. All rights reserved.<img src="image/gallery/fb.png"><img src="image/gallery/t.png"></div>
-    </div>
 </div>
+<div class="content" style="text-align: center;margin-top: 100px;">
+    <?= $desc ?>
+</div>
+<div class="footer">
+    <div style="width: 1000px;margin: 0 auto;line-height: 100px;text-align: center;font-family: inherit;font-size: 20px;">
+        Copyright © 2015 Eternal sound. All rights reserved.<img src="image/gallery/fb.png"><img src="image/gallery/t.png"></div>
+</div>
+
+<?php $essayImpl->closeConn();?>
 </body>
 </html>

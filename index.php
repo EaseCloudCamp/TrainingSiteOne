@@ -7,7 +7,6 @@
  */
 include("mvc/dao/EssayDaoImpl.php");
 $essayImpl=new EssayDaoImpl();
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- saved from url=(0023)http://eternalsound.dk/ -->
@@ -126,8 +125,9 @@ $essayImpl=new EssayDaoImpl();
 
 <div class="footer">
     <div style="width: 1000px;margin: 0 auto;line-height: 100px;text-align: center;font-family: inherit;font-size: 20px;">
-        Copyright © 2015 Eternal sound. All rights reserved.<img src=image/gallery/fb.png"><img src="image/gallery/t.png"></div>
+        Copyright © 2015 Eternal sound. All rights reserved.<img src="image/gallery/fb.png"><img src="image/gallery/t.png"></div>
 </div>
+<?php $essayImpl->closeConn();?>
 </body>
 </html>
 

@@ -6,19 +6,17 @@
  * Time: 13:41
  */
 
-
 session_start();
-//require_once (__DIR__."/mvc/dao/AdminDaoImpl.php");
-require_once ("../mvc/dao/AdminDaoImpl.php");
+ include "../mvc/dao/AdminDaoImpl.php";
 $username = $_POST['username'];
 $password = $_POST['password'];
-
-if ($username != null) {
-    $admin = new AdminDaoImpl();
+ if ($username != null) {
+    $admin=new AdminDaoImpl();
     $flag = $admin->login($username, $password);
     if ($flag) {
         header('Location:../admin/index.php');
         exit;
     }
+           echo "没成功";
 }
 ?>

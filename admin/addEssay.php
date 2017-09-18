@@ -161,7 +161,7 @@ $typeName = $_GET['typeName'];
           enctype="multipart/form-data">
         <input type="hidden" id="navigationType" name="navigationType" value="<?php echo $typeName; ?>"><br/>
         <input type="hidden" name="essayTime" id="essayTime"/><br/>
-        Article name：<input class="common-text" name="essayName" id="essayName"/>
+        Article name:<input class="common-text" name="essayName" id="essayName"/>
 
         <br/><br/>
 

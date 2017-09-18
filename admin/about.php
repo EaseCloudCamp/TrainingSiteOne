@@ -1,9 +1,9 @@
 
 <?php
-$username = "root";
-$password = "root";
-$url = "localhost:3306";
-$conn = new mysqli($url, $username, $password, "eten");
+$username = "west3453";
+$password = "West263453";
+$url = "sql.m32.vhostgo.com";
+$conn = new mysqli($url, $username, $password, "west3453");
 if ($conn->connect_error) {
     echo "<script>alert('数据库链接失败')</script>";
 }
@@ -25,8 +25,8 @@ $conn->close();
     <base href="<%=basePath%>">
     
     <title>ETEN about page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="ETEN">
@@ -58,26 +58,9 @@ $conn->close();
         function init()
         {
         	var content = UE.getEditor('editor').getContent();
+
         	$("#aboutDesc").val(content);
         }
-
-        $(function (){
-        	var message = "";
-            message = '${message}';
-            if(message=="save success")
-            {
-            	alert("save success");
-            }
-            else if(message=="save failure")
-            {
-            	alert("save failure");
-            }
-        })
-
-
-
-
-
 
 
     </script>

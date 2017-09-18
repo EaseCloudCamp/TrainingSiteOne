@@ -101,19 +101,6 @@ $pages = ceil(GalleryImpl::$nums / 10);
         });
     }
 
-    function del(val) {
-        var str = val.split("_");
-        $("#" + str[1]).remove();
-        //   alert(str[0]);
-        $.ajax({
-            type: "POST",
-            url: "multiple/multipleFileUp_deletePicture.do",
-            data: "imageFileName=" + str[0],
-            success: function (msg) {
-
-            }
-        });
-    }
 
     function deletePicture(galleryId) {
 
@@ -126,7 +113,7 @@ $pages = ceil(GalleryImpl::$nums / 10);
                 dataType: "text",
                 data: "galleryId=" + galleryId,
                 success: function (data) {
-                    if (data.indexOf("ok")>=1) {
+                    if (data=='ok') {
                         $("#" + galleryId).remove();
                     }
                 }
@@ -344,9 +331,10 @@ if ($pages > 1) {
 
 
 <a class="a-upload">
-    <input id="addImg" onchange="addFile()" name="file" type="file">添加图片
+    <input id="addImg" onchange="addFile()" name="file" type="file">add image
 </a>
 </div>
 
+<?php $gallery->close();?>
 </body>
 </html>

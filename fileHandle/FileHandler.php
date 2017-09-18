@@ -12,7 +12,9 @@ $allowFile = array("jpg", "jpeg", "png");
 $temp = explode(".", $filename);
 $fileType = end($temp);
 
-$filepath = realpath(dirname(__FILE__).'/../')."/image/essay/";
+$filepath = realpath(dirname(__FILE__).'/../')."\\image\\essay\\";
+
+
 
 $nav=$_POST["navigationType"];
 

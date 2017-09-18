@@ -75,7 +75,7 @@ if ($column == null) {
                 }
 
                 if ($column == 'US') {
-                    echo "<li><a href='' target='rigth' style='text-align: center'>US</a></li>";
+                    echo "<li><a href='about.php' target='rigth' style='text-align: center'>US</a></li>";
                 }
                 if ($column == 'Gallery') {
                     echo "<li><a href='gallery.php?currentPage=1' target='rigth'>gallery</a></li>";

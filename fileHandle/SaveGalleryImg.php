@@ -43,16 +43,15 @@ if (($_FILES['file']['type'] == 'image/gif'
 function addImages($imgName)
 {
     // TODO: Implement addImages() method.
-    $username = "root";
-    $password = "root";
-    $url = "localhost:3306";
-    $conn = new mysqli($url, $username, $password, "eten");
+    $username = "west3453";
+    $password = "West263453";
+    $url = "sql.m32.vhostgo.com";
+    $conn = new mysqli($url, $username, $password, "west3453");
     if ($conn->connect_error) {
         echo "<script>alert('数据库链接失败')</script>";
     }
-    $imgPath = "image/gallery/" . $imgName;
-    $conn = new mysqli($url, $username, $password, "eten");
-    $saveSQL = "insert into gallery(gallery_name, gallery_uri) VALUES ('" . $imgName . "','" . $imgPath . "')";
+     $imgPath = "image/gallery/" . $imgName;
+     $saveSQL = "insert into gallery(gallery_name, gallery_uri) VALUES ('" . $imgName . "','" . $imgPath . "')";
     if ($conn->query($saveSQL)) {
         echo "<br>保存成功";
     }

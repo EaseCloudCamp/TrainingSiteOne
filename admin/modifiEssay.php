@@ -171,11 +171,10 @@ $rows = $essay->findEssayImgsByEssayId($essayId);
     }
 
 
-
     function addFile() {
         var formData = new FormData();
         formData.append("file", $("#addImg")[0].files[0]);
-        formData.append("essayId",$("#essayId").prop("value"));
+        formData.append("essayId", $("#essayId").prop("value"));
         $.ajax({
             url: "../fileHandle/EssayImgHandler.php",
             data: formData,
@@ -185,9 +184,9 @@ $rows = $essay->findEssayImgsByEssayId($essayId);
             processData: false,
             success: function (data) {
                 console.log(data);
-                           //上传完成之后刷新页面
+                //上传完成之后刷新页面
                 console.log("刷新")
-               location.reload(true);
+                location.reload(true);
 
             }, error: function (data) {
 
@@ -201,12 +200,12 @@ $rows = $essay->findEssayImgsByEssayId($essayId);
 
 
 <div style="margin: 20px;">
-    Article name：<input type="text" value="<?php echo $essayName ?>" id="essayName"/> <span style="color: green;"
+    Article name : <input type="text" value="<?php echo $essayName ?>" id="essayName"/> <span style="color: green;"
                                                                                             id="message"></span>
     <input type="hidden" value="<?php echo $essayId ?>" id="essayId"><br>
 
     <a class="a-upload">
-        <input id="addImg" onchange="addFile()" name="file" type="file">添加图片
+        <input id="addImg" onchange="addFile()" name="file" type="file">add image
     </a>
 </div>
 
@@ -218,20 +217,22 @@ $rows = $essay->findEssayImgsByEssayId($essayId);
 
     <?php
 
-    foreach ($rows as $row) {
-        ?>
-        <!--onmouseout="hideDelete('<?php /*echo $row[0] */ ?>')"-->
-        <li>
-            <div id='<?php echo $row[0] ?>'
-                 style='margin-top:15px;border:1px solid #7F7F7F;  width: 150px;height: 150px;display: inline-block;margin-left: 15px'>
-                <img id="<?php echo $row[0] ?>"
-                     src=<?php echo "../" . $row[3] ?> onmouseover="showDelete('<?php echo $row[0] ?>')"
-                     style='margin: 0px;padding: 0px; width:150px;height:150px'
-                />
-                <div onclick="deletePicture(<?php echo $row[0] ?>)" class="<?php echo $row[0] ?>" style='width:150px;height: 30px;margin: 0px;opacity:0.8;padding: 0px;cursor: pointer;text-align: center;line-height: 30px;background-color:
+    if (count($rows)>0) {
+        foreach ($rows as $row) {
+            ?>
+            <!--onmouseout="hideDelete('<?php /*echo $row[0] */ ?>')"-->
+            <li>
+                <div id='<?php echo $row[0] ?>'
+                     style='margin-top:15px;border:1px solid #7F7F7F;  width: 150px;height: 150px;display: inline-block;margin-left: 15px'>
+                    <img id="<?php echo $row[0] ?>"
+                         src=<?php echo "../" . $row[3] ?> onmouseover="showDelete('<?php echo $row[0] ?>')"
+                         style='margin: 0px;padding: 0px; width:150px;height:150px'
+                    />
+                    <div onclick="deletePicture(<?php echo $row[0] ?>)" class="<?php echo $row[0] ?>" style='width:150px;height: 30px;margin: 0px;opacity:0.8;padding: 0px;cursor: pointer;text-align: center;line-height: 30px;background-color:
                 #7F7F7F;position: absolute;color: red; margin-top: -30px;display: none;z-index: 1000;'>delete</p>
-                </div>
-        </li> <?php } ?> </ul>
+                    </div>
+            </li> <?php }
+    } ?> </ul>
 </body>
 
 </html>

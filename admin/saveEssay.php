@@ -12,7 +12,7 @@ $essayName = $_POST['essayName'];
 
 
 $imgNum = $_POST['num'];
-echo $imgNum;
+
 $imgs = array();
 
 for ($i = 0; $i < $imgNum; $i++) {
@@ -29,19 +29,19 @@ saveImgs($imgs, $essayName);
 function saveImgs($imgs, $essayName)
 {
 
-    $username = "root";
-    $password = "root";
-    $url = "localhost:3306";
-    $dbname = "eten";
+    $username = "west3453";
+    $password = "West263453";
+    $url = "sql.m32.vhostgo.com";
+    $conn = new mysqli($url, $username, $password, "west3453");
 
-    $conn = new mysqli($url, $username, $password, $dbname);
     $essayIdSQL = "select essay_id from essay WHERE essay_name='" . $essayName . "'";
-    echo "<br>" . $essayIdSQL;
+
+
     $rs = $conn->query($essayIdSQL);
-    $essayId = $rs->fetch_row()[0];
+    $row = $rs->fetch_row();
+    $essayId=$row[0];
 
 
-    echo "<br>长度:".count($imgs);
 
     for($i=0;$i<count($imgs);$i++){
 
@@ -56,19 +56,16 @@ function saveImgs($imgs, $essayName)
 function saveEssay($essayName, $navigationType)
 {
 
-
-    $username = "root";
-    $password = "root";
-    $url = "localhost:3306";
-    $dbname = "eten";
-
-    $conn = new mysqli($url, $username, $password, $dbname);
+    $username = "west3453";
+    $password = "West263453";
+    $url = "sql.m32.vhostgo.com";
+    $conn = new mysqli($url, $username, $password, "west3453");
     $saveSQL = "insert into essay(navigation_type, essay_name) VALUES ('" . $navigationType . "','" . $essayName . "')";
 
-    echo "<br>" . $saveSQL;
+
     if ($conn->query($saveSQL)) {
 
-        echo "保存成功";
+        echo "essay upload success";
     }
 
     $conn->close();
@@ -78,18 +75,17 @@ function saveEssay($essayName, $navigationType)
 function saveOne($img, $essayId)
 {
 
-    echo "<br>".$img;
+
     $imgPath = "image/essay/" . $img;
 
-    echo "<br>".$imgPath;
-    $username = "root";
-    $password = "root";
-    $url = "localhost:3306";
-    $dbname = "eten";
-    $conn = new mysqli($url, $username, $password, $dbname);
+
+    $username = "west3453";
+    $password = "West263453";
+    $url = "sql.m32.vhostgo.com";
+    $conn = new mysqli($url, $username, $password, "west3453");
     $saveSQL = "insert into picture(essay_id, essay_uri,picture_realFileName) VALUES ('" . $essayId . "','" . $img . "','" . $imgPath . "')";
     if ($conn->query($saveSQL)) {
-        echo "<br>保存成功";
+        echo "<br>Images upload success";
     }
     $conn->close();
 }

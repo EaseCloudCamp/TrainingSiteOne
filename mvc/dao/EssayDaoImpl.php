@@ -5,51 +5,49 @@
  * Date: 17-8-30
  * Time: 上午9:46
  */
+
+include "DataBaseConnection.php";
 include("EssayDao.php");
 
-/*include("../../../entity/Essay.php");*/
 
 class EssayDaoImpl implements EssayDao
 {
 
+    private $conn = null;
 
     /**
      * EssayDaoImpl constructor.
      */
+    public function __construct()
+    {
+        $data = new DataBaseConnection();
+        $this->conn = $data->dataBaseConnection();
+        $this->setConn($this->conn);
+
+    }
+
+    public function closeConn()
+    {
+
+        $this->conn->close();
+
+    }
 
 
     public function findEssay()
     {
 // TODO: Implement findEssay() method.
-
-
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
-
-        if ($conn->connect_error) {
-            echo "<script>alert('数据库连接失败')</script>";
-            return;
-        }
         $sql = "select * from essay";
-        $rs = $conn->query($sql);
-
+        $rs = $this->conn->query($sql);
         $rows = null;
-
         if ($rs->num_rows > 0) {
             $rows = $rs->fetch_all();
-
-            $rs->close();
-            $conn->close();
-
             return $rows;
 
         } else {
 
         }
-        $rs->close();
-        $conn->close();
+
         return null;
     }
 
@@ -67,17 +65,9 @@ class EssayDaoImpl implements EssayDao
         $essayId = $essay->getEssayId();
         echo $navigationType;
         echo $essayId;
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
 
-        if ($conn->connect_error) {
-            echo "<script>alert('数据库连接失败')</script>";
-            return;
-        }
         $sql = "delete from essay WHERE navigation_type='" . $navigationType . "'and essay_id='" . $essayId . "'";
-        $rs = $conn->query($sql);
+        $rs = $this->conn->query($sql);
 
 
         return null;
@@ -89,32 +79,19 @@ class EssayDaoImpl implements EssayDao
         // TODO: Implement findEssayByNavigationType() method.
 
 
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
-
-        if ($conn->connect_error) {
-            echo "<script>alert('数据库连接失败')</script>";
-            return;
-        }
         $sql = "select * from essay WHERE navigation_type='" . $navigationType . "'";
-        $rs = $conn->query($sql);
+        $rs = $this->conn->query($sql);
 
         $rows = null;
 
         if ($rs->num_rows > 0) {
+            echo "<script>console.log('执行查找')</script>";
             $rows = $rs->fetch_all();
-
-            $rs->close();
-            $conn->close();
             return $rows;
-
         } else {
 
         }
-        $rs->close();
-        $conn->close();
+
         return null;
     }
 
@@ -123,42 +100,28 @@ class EssayDaoImpl implements EssayDao
         // TODO: Implement fingEssayImgsByNavigationType() method.
 
 
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
-
-        if ($conn->connect_error) {
-            echo "<script>alert('数据库连接失败')</script>";
-            return;
-        }
         $sql = "select essay_id from essay WHERE essay_name='" . $navigationName . "'";
-
         echo "<br>" . $sql;
-        $rs = $conn->query($sql);
+        $rs = $this->conn->query($sql);
 
         $rows = null;
 
         if ($rs->num_rows > 0) {
-            echo "<br>查到数据";
-
-            $essayId = $rs->fetch_row()[0];
-            echo $essayId . "  ";
+            $row = $rs->fetch_row();
+            $essayId = $row[0];
+            // $essayId = ($rs->fetch_row())[0];
             $imgSql = "select picture_realFileName from picture WHERE essay_id='" . $essayId . "'";
-
-            $rs1 = $conn->query($imgSql);
+            $rs1 = $this->conn->query($imgSql);
             if ($rs1->num_rows > 0) {
                 $imgPaths = $rs1->fetch_all();
             }
-            $rs->close();
-            $conn->close();
+
             return $imgPaths;
 
         } else {
 
         }
-        $rs->close();
-        $conn->close();
+
         return null;
     }
 
@@ -166,27 +129,17 @@ class EssayDaoImpl implements EssayDao
     {
         // TODO: Implement delEssayAll() method.
 
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
-
-        if ($conn->connect_error) {
-            echo "<script>alert('数据库连接失败')</script>";
-            return;
-        }
-
         for ($i = 0; $i < count($essayIds); $i++) {
 
             if ($essayIds[$i] != "") {
 
                 $sql = "delete from essay WHERE navigation_type='" . $navigationType . "'and essay_id='" . $essayIds[$i] . "'";
-                $conn->query($sql);
+                $this->conn->query($sql);
             }
         }
 
 
-        $conn->close();
+        $this->conn->close();
 
     }
 
@@ -194,21 +147,15 @@ class EssayDaoImpl implements EssayDao
     {
         // TODO: Implement findEssayImgsByEssayId() method.
 
-
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
         $rows = null;
 
         $imgSql = "select * from picture WHERE essay_id='" . $essayId . "'";
-        $rs = $conn->query($imgSql);
+        $rs = $this->conn->query($imgSql);
         if ($rs->num_rows > 0) {
             $imgPaths = $rs->fetch_all();
         }
 
-        $rs->close();
-        $conn->close();
+
         return $imgPaths;
     }
 
@@ -216,21 +163,14 @@ class EssayDaoImpl implements EssayDao
     {
         // TODO: Implement modifyEssayName() method.
 
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
-        if ($conn->connect_error) {
-            die("连接数据库失败");
-            return;
-        }
-        $sql = "update essay set essay_name='".$newName."' where essay_id=" . $essayId;
 
-        if (!$conn->query($sql)) {
+        $sql = "update essay set essay_name='" . $newName . "' where essay_id=" . $essayId;
+
+        if (!$this->conn->query($sql)) {
 
             return false;
         }
-        $conn->close();
+
 
         return true;
     }
@@ -238,25 +178,31 @@ class EssayDaoImpl implements EssayDao
     public function deleteEssayImg($imgId)
     {
         // TODO: Implement deleteEssayImg() method.
-        $username = "root";
-        $password = "root";
-        $url = "localhost:3306";
-        $conn = new mysqli($url, $username, $password, "eten");
-        if ($conn->connect_error) {
-            die("连接数据库失败");
-            return;
-        }
+
         $sql = "delete from picture where picture_id=" . $imgId;
 
-        if (!$conn->query($sql)) {
+        if (!$this->conn->query($sql)) {
 
             return false;
         }
-        $conn->close();
 
         return true;
-
-
-
     }
+
+    /**
+     * @return DataBaseConnection|null
+     */
+    public function getConn()
+    {
+        return $this->conn;
+    }
+
+    /**
+     * @param DataBaseConnection|null $conn
+     */
+    public function setConn($conn)
+    {
+        $this->conn = $conn;
+    }
+
 }
