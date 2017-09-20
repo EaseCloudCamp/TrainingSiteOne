@@ -78,7 +78,7 @@
                         $username = "root";
                         $password = "root";
                         $dbname = "eten";
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        $conn = new mysql($servername, $username, $password, $dbname);
 
                         if ($conn->connect_error) {
                             die("连接失败: " . $conn->connect_error);
@@ -103,18 +103,6 @@
                     <a>Amplifier</a>
                     <ul>
                         <?php
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "root";
-                        $dbname = "eten";
-
-                        // 创建连接
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-                        // 检测连接
-                        if ($conn->connect_error) {
-                            die("连接失败: " . $conn->connect_error);
-                        }
-
                         $sql = "SELECT * FROM essay WHERE navigation_type='2'";
                         $result = $conn->query($sql);
 

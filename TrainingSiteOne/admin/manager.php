@@ -25,7 +25,6 @@ if($column==null){
 
 ?>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -71,20 +70,20 @@ if($column==null){
                 <?php
                 if ($column == 'Speaker') {
                     echo "<li><a href='addEssay.php?typeName=1' target='rigth'>Add Article</a></li>";
-                    echo "<li><a href='' target='rigth'>Article Manager</a></li>";
+                    echo "<li><a href='essayManager.php?typeName=1' target='rigth'>Article Manager</a></li>";
+                }
+
+                if ($column == 'Amplifier') {
+                    echo "<li><a href='addEssay.php?typeName=2' target='rigth'>Add Article</a></li>";
+                    echo "<li><a href='essayManager.php?typeName=2' target='rigth'>Article Manager</a></li>";
+                }
+
+                if ($column == 'Gallery') {
+                    echo "<li><a href='' target='rigth'>Gallery</a></li>";
                 }
 
                 if ($column == 'US') {
-                    echo "<li><a href='' target='rigth'>US</a></li>";
-                }
-                if ($column == 'Gallery') {
-
-                    echo "<li><a href='' target='rigth'>Add Article</a></li>";
-                    echo "<li><a href='' target='rigth'>Article Manager</a></li>";
-
-                }
-                if ($column == 'Amplifier') {
-                    echo "<li><a href='' target='rigth'>US</a></li>";
+                    echo "<li><a href='' target='rigth'>about</a></li>";
                 }
                 ?>
             </ul>

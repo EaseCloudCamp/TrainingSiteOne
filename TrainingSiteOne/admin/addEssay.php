@@ -5,7 +5,6 @@ $typeName=$_GET['typeName'];
 <html>
 <head>
 
-
     <title>Add article</title>
 
     <meta http-equiv="pragma" content="no-cache">
@@ -24,7 +23,6 @@ $typeName=$_GET['typeName'];
     <script type="text/javascript" src="../uploadify/jquery.uploadify.js"></script>
     <link rel="stylesheet" type="text/css" href="../uploadify/uploadify.css">
     <script type="text/javascript">
-
 
         function del(val) {
             var str = val.split("_");
@@ -50,7 +48,6 @@ $typeName=$_GET['typeName'];
             str += myDate.getMinutes() + 1;    //获取当前分钟数(0-59)
             str += myDate.getSeconds() + 1;    //获取当前秒数(0-59)
             $("#essayTime").val(str);
-
 
           /*  $("#imageify").uploadify({     //不兼容edge
                 'fileObjName': 'image', //提交时候的字段名，和struts2里面用来接收File的字段名一致
@@ -151,7 +148,6 @@ $typeName=$_GET['typeName'];
         Article name：<input class="common-text" name="essayName" id="essayName"/>
 
         <br/><br/>
-
 
         <input type="file" style="margin-left: 80%" id="imageify" name="file">
 

@@ -1,11 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: xiaohao-pc
- * Date: 17-8-31
- * Time: 下午5:25
+ * User: mosiqi
+ * Date: 17-9-13
+ * Time: 下午5:49
  */
-
 session_start();
 if ($_SESSION['admin'] == null) {
     header("Location:../login.php");
